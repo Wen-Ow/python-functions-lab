@@ -16,7 +16,7 @@ def calculate_area_triangle(base, height): # Base and height are the parameters 
     return area # Return the computed area of the triangle
 
 print('Exercise 1:', calculate_area_triangle(10, 5)) # output: 25.0 (which is a float)
-print('Exercise 1:', calculate_area_triangle(7, 3)) # output: 10.5 (which is a float)
+print('Exercise 1:', calculate_area_triangle(7, 3)) # output: 10.5 
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ def simple_interest(principal, rate, time): # Principal, rate and time are the p
     return interest # Return the computed simple interest
 
 print('Exercise 2:', simple_interest(1000, 5, 2)) # output: 100.0 (which is a float)
-print('Exercise 2:', simple_interest(1500, 3.5, 5)) # output: 262.5 (which is a float)
+print('Exercise 2:', simple_interest(1500, 3.5, 5)) # output: 262.5 
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ def apply_discount(price, discount_percent): # Price and discount are the parame
     return final_price # Return the final price after discount
 
 print('Exercise 3:', apply_discount(100, 25)) # output: 75.0 (which is a float)
-print('Exercise 3:', apply_discount(80, 10)) # output: 72.0 (which is a float)
+print('Exercise 3:', apply_discount(80, 10)) # output: 72.0 
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -96,7 +96,7 @@ def convert_temperature(temperature, unit): # Temperature and unit are the param
     return round(converted, 1) # Return the converted temperature rounded to one decimal place
 
 print('Exercise 4: Convert 0°C to Fahrenheit:', convert_temperature(0, 'C')) # output: 32.0 (which is a float)
-print('Exercise 4: Convert 32°F to Celsius:', convert_temperature(32, 'F')) # output: 0.0 (which is a float)
+print('Exercise 4: Convert 32°F to Celsius:', convert_temperature(32, 'F')) # output: 0.0 
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -117,7 +117,7 @@ def sum_to(n): # n is the parameter of the function
     return total # Return the computed sum
 
 print('Exercise 5:', sum_to(6)) # output: 21 (which is an integer)
-print('Exercise 5:', sum_to(10)) # output: 55 (which is an integer)
+print('Exercise 5:', sum_to(10)) # output: 55 
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -134,7 +134,7 @@ def largest(a, b, c): # a, b and c are the parameters of the function
     return max(a, b, c) # Use the built-in max function to find the largest number among a, b and c
 
 print('Exercise 6:', largest(1, 2, 3)) # output: 3 (which is an integer)
-print('Exercise 6:', largest(10, 4, 2)) # output: 10 (which is an integer)
+print('Exercise 6:', largest(10, 4, 2)) # output: 10 
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -147,10 +147,19 @@ print('Exercise 6:', largest(10, 4, 2)) # output: 10 (which is an integer)
 # calculate_tip(50, 20) should return 10.
 #
 # Write your function and test its output below.
+def calculate_tip(bill_amount, tip_percentage): # Bill amount and tip percentage are the parameters of the function
+    
+    if bill_amount < 0:
+        return "Error: Bill amount must be a positive number."
+    
+    if tip_percentage < 0:
+        return "Error: Tip percentage must be a positive number."
+    
+    tip = (bill_amount * tip_percentage) / 100 # Calculate the tip using the formula bill_amount * tip_percentage / 100
 
+    return round(tip, 2) # Rounded to two decimal places for better readability
 
-
-# print('Exercise 7:', calculate_tip(50, 20))
+print('Exercise 7:', calculate_tip(50, 20)) # output: 10.0 (which is a float)
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -164,10 +173,20 @@ print('Exercise 6:', largest(10, 4, 2)) # output: 10 (which is an integer)
 # product(2, 5, 5) should return 50.
 #
 # Define the function and call it with different sets of numbers to test.
+def product(*args): # *args allows the function to accept any number of arguments; these arguments are stored in a tuple named args
 
+    if not args: # not args checks if the tuple is empty
+        return "Error: No numbers provided. Please provide at least one number."
+    
+    result = 1 # Initialize the result to 1 because multiplying by 1 does not change the value
 
+    for num in args: # Iterate through each number in the arguments
+        result *= num # Multiply the result by the current number
 
-# print('Exercise 8:', product(2, 5, 5))
+    return result # Return the final product
+
+print('Exercise 8:', product(-1, 4)) # output: -4 (which is an integer)
+print('Exercise 8:', product(2, 5, 5)) # output: 50 
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -185,13 +204,27 @@ print('Exercise 6:', largest(10, 4, 2)) # output: 10 (which is an integer)
 # basic_calculator(10, 5, 'divide') should return 2.
 #
 # Define the function and then call it below.
+def basic_calculator(num1, num2, operation): # num1, num2 and operation are the parameters of the function
 
+    operation = operation.lower() # Convert the operation to lowercase to handle both 'ADD' and 'add', etc.
 
-
-# print('Exercise 9 Result:', basic_calculator(10, 5, "subtract"))
-# print('Exercise 9 Result:', basic_calculator(10, 5, "add"))
-# print('Exercise 9 Result:', basic_calculator(10, 5, "multiply"))
-# print('Exercise 9 Result:', basic_calculator(10, 5, "divide"))
+    if operation == 'add': # Check the operation and perform the corresponding calculation
+        return num1 + num2
+    elif operation == 'subtract':
+        return num1 - num2
+    elif operation == 'multiply':
+        return num1 * num2
+    elif operation == 'divide':
+        if num2 == 0: # Check if the second number is zero to avoid division by zero
+            return "Error: Division by zero is not allowed. You cannot divide by zero."
+        return num1 / num2 # Perform the division
+    else:
+        return "Error: Invalid operation. Please use 'add', 'subtract', 'multiply', or 'divide'."
+    
+print('Exercise 9 Result:', basic_calculator(10, 5, "subtract")) # output: 5 (which is an integer)
+print('Exercise 9 Result:', basic_calculator(10, 5, "add")) # output: 15 
+print('Exercise 9 Result:', basic_calculator(10, 5, "multiply")) # output: 50 
+print('Exercise 9 Result:', basic_calculator(10, 5, "divide")) # output: 2.0 (which is a float)
 
 # -----------------------------------------------------------------------------------------------------------------------
 
